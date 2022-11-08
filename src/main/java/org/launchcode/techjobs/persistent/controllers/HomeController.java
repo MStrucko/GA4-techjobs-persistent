@@ -31,11 +31,12 @@ public class HomeController {
     @Autowired
     private JobRepository jobRepository;
 
+    //display homepage with jobs list
     @RequestMapping("")
     public String index(Model model) {
 
         model.addAttribute("title", "My Jobs");
-
+        model.addAttribute("jobs", jobRepository.findAll());
         return "index";
     }
 
@@ -51,20 +52,16 @@ public class HomeController {
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
                                        Errors errors, Model model, @RequestParam int employerId, @RequestParam List<Integer> skills) {
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Job");
-            model.addAttribute("employers", employerRepository.findAll());
-            model.addAttribute("skills", skillRepository.findAll());
-            return "add";
-        }
-
+        Optional optEmployer = employerRepository.findById(employerId);
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
         newJob.setSkills(skillObjs);
-        Optional<Employer> employer = employerRepository.findById(employerId);
-        newJob.setEmployer(employer.orElse(null));
+        if (errors.hasErrors() || !optEmployer.isPresent()) {
+            model.addAttribute("title", "Add Job");
+            return "add";
+        }
+        Employer employer = (Employer) optEmployer.get();
+        newJob.setEmployer(employer);
         jobRepository.save(newJob);
-
         return "redirect:";
     }
 
