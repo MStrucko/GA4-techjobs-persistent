@@ -16,7 +16,7 @@ public class Skill extends AbstractEntity {
 
     @NotNull
     @NotBlank
-    @Size(min=3, max=200, message="Description is required")
+    @Size(min=3, max=200)
     private String description;
 
     public Skill(){}
@@ -30,7 +30,6 @@ public class Skill extends AbstractEntity {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
 
     public List<Job> getJobs() {

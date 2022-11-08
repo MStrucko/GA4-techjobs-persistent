@@ -17,16 +17,13 @@ public class Employer extends AbstractEntity {
     @JoinColumn(name = "employer_id")
     private  List<Job> jobs = new ArrayList<>();
 
-    @NotBlank
+    @NotBlank(message = "Name is required")
     @NotNull
-    @Size(min=3, max=100, message = "Location is required")
+    @Size(min=3, max=100)
     private String location;
 
 
-
     public Employer(){}
-
-
 
 
     public String getLocation() {
