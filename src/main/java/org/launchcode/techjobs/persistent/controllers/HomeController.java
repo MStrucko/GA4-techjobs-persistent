@@ -31,8 +31,6 @@ public class HomeController {
     @Autowired
     private JobRepository jobRepository;
 
-
-
     @RequestMapping("")
     public String index(Model model) {
 
