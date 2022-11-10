@@ -12,14 +12,6 @@ public class Job extends AbstractEntity{
 
     @ManyToMany
     private List<Skill> skills = new ArrayList<>();
-    // @Id
-   // @GeneratedValue
-   // private int id;
-
-    //private String name;
-
-    //private String employer;
-   // private String skills;
 
     public Job() {
     }
@@ -29,16 +21,6 @@ public class Job extends AbstractEntity{
         this.employer = anEmployer;
         this.skills = someSkills;
     }
-
-    // Getters and setters.
-
-    //public String getName() {
-        //return name;
-    //}
-
-    //public void setName(String name) {
-       // this.name = name;
-    //}
 
     public Employer getEmployer() {
         return employer;
