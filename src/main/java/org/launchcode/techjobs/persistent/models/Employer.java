@@ -9,7 +9,6 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 public class Employer extends AbstractEntity {
 
@@ -22,9 +21,7 @@ public class Employer extends AbstractEntity {
     @Size(min=3, max=100)
     private String location;
 
-
     public Employer(){}
-
 
     public String getLocation() {
         return location;
